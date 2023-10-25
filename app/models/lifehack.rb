@@ -1,0 +1,2 @@
+class Lifehack < ApplicationRecord
+end
