@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     resources :item_favorites, only:[:destroy]
   end
 
+  get '/users/unsubscribe' => 'public/users#unsubscribe'
+  patch '/users/withdraw' => 'public/users#withdraw'
+
    scope module: :public do
     resources :users, only:[:show, :edit, :update]
     resources :lifehacks
@@ -29,9 +32,6 @@ Rails.application.routes.draw do
     resources :item_comments, only:[:show, :new, :create, :edit, :update, :destroy]
     resource :item_favorites, only:[:create, :destroy]
   end
-
-  get '/users/unsubscribe' => 'public/users#unsubscribe'
-  patch '/users/withdraw' => 'public/users#withdraw'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
