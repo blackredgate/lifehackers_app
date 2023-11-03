@@ -7,13 +7,13 @@
       <% end %>
     </h3>
   </div>
-  
-  <% lifehacks.each do |lifehack| %>
+
+  <% @lifehacks.each do |lifehack| %>
   <div class="card w-50 mx-auto mt-4 shadow-lg">
     <%= link_to lifehack_path(lifehack.id) do %>
       <%= image_tag lifehack.get_image, class:"card-img-top"; %>
     <% end %>
-    
+
     <div class="card-body">
       <div class="row">
         <div class="col-10">
@@ -28,5 +28,5 @@
     </div>
   </div>
   <% end %>
-  
+
 </div>

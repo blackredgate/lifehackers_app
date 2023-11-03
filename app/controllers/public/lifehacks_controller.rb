@@ -12,25 +12,35 @@ class Public::LifehacksController < ApplicationController
       render :new
     end
   end
-  
+
+  def edit
+    @lifehack = Lifehack.find(params[:id])
+  end
+
+  def update
+    @lifehack = Lifehack.find(params[:id])
+    @lifehack.update(lifehack_params)
+    redirect_to lifehack_path(@lifehack.id)
+  end
+
   def destroy
     lifehack = Lifehack.find(params[:id])
     lifehack.destroy
     redirect_to lifehacks_path
   end
-  
+
   def index
-    @lifehacks = Lifehack.page(params[:page])
+    @lifehacks = Lifehack.all
   end
 
   def show
     @lifehack = Lifehack.find(params[:id])
     @comment = Comment.new
   end
-  
+
   private
-  
+
   def lifehack_params
-    params.require(:post_image).permit( :image, :title, :body)
+    params.require(:lifehack).permit( :image, :title, :body)
   end
 end
