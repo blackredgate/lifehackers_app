@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row my-4">
+    <div class="col-md-2">
+      <div>
+        <%= flash[:notice] %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-4">
+    <div class="col-md-8">
+      <p class="bg-secondary"><%= @user.user_name %>さんの会員詳細</p>
+      <table class="table table-borderless">
+        <tr><td class="table-active text-nowrap">ユーザーネーム</td><td class="text-nowrap"><%= @user.user_name %></td></tr>
+        <tr><td class="table-active text-nowrap">メールアドレス</td><td class="text-nowrap"><%= @user.email %></td></tr>
+        <tr>
+          <td class="table-active text-nowrap">ステータス</td>
+          <td class="text-nowrap">
+            <% if @user.is_deleted == false %>
+              <p class="text-success"><string>有効</string></p>
+            <% else %>
+              <p class="text-muted"><string>退会</string></p>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row my-4">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="mx-5 d-inline-flex">
+        <div class="mx-5 text-nowrap">
+          <%= link_to edit_admin_user_path(@user.id), class: 'btn btn-success' do %>
+            編集する
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
