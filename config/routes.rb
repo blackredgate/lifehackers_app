@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     resources :item_favorites, only:[:destroy]
   end
 
+  get '/users/unsubscribe' => 'public/users#unsubscribe'
+  patch '/users/withdraw' => 'public/users#withdraw'
+
    scope module: :public do
     resources :users, only:[:show, :edit, :update]
     resources :lifehacks
