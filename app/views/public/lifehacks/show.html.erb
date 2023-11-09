@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="col-3">
+      <%= current_user.user_name %>
+
+      <!-- 新規投稿フォーム -->
+      <div class="row my-3">
+        <div class="col-12">
+          <h3>コメント投稿</h3>
+          <%= form_with model: @comment, url: '/comments' do |f| %>
+            <div>
+              <div><%= f.text_area :comment, size: "30" %></div>
+            </div>
+            <div>
+              <%= f.submit '投稿する！', class:'btn btn-sm btn-success' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row my-3">
+        <div class="col-12">
+          <% if @lifehack.favorited_by?(current_user) %>
+            <p>
+              <%= link_to lifehack_favorites_path(@lifehack), method: :delete do %>
+                ♥<%= @lifehack.favorites.count %> お気に入り
+              <% end %>
+            </p>
+          <% else %>
+            <p>
+              <%= link_to lifehack_favorites_path(@lifehack), method: :post do %>
+                ♡<%= @lifehack.favorites.count %> お気に入り
+              <% end %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-5">
+      <%= image_tag @lifehack.get_image(300, 300) %>
+      <% @comments.each do |comment| %>
+        <%= comment.comment %>
+      <% end %>
+    </div>
+
+    <div class="col-4">
+      <%= @lifehack.title %><br>
+      <%= @lifehack.body %>
+    </div>
+  </div>
+</div>

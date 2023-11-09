@@ -25,9 +25,10 @@ Rails.application.routes.draw do
 
    scope module: :public do
     resources :users, only:[:show, :edit, :update]
-    resources :lifehacks
+    resources :lifehacks do
+      resource :favorites, only:[:create, :destroy]
+    end
     resources :comments, only:[:show, :new, :create, :edit, :update, :destroy]
-    resource :favorites, only:[:create, :destroy]
     resources :items
     resources :item_comments, only:[:show, :new, :create, :edit, :update, :destroy]
     resource :item_favorites, only:[:create, :destroy]
