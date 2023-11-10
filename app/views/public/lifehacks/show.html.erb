@@ -6,14 +6,10 @@
       <!-- 新規投稿フォーム -->
       <div class="row my-3">
         <div class="col-12">
-          <h3>コメント投稿</h3>
-          <%= form_with model: @comment, url: '/comments' do |f| %>
-            <div>
-              <div><%= f.text_area :comment, size: "30" %></div>
-            </div>
-            <div>
-              <%= f.submit '投稿する！', class:'btn btn-sm btn-success' %>
-            </div>
+          <h4>コメント投稿</h4>
+          <%= form_with model: [@lifehack, @comment] do |f| %>
+            <%= f.text_area :comment, size: "30", placeholder: "コメントをここに" %>
+            <%= f.submit "投稿する！", class:'btn btn-sm btn-success' %>
           <% end %>
         </div>
       </div>
@@ -38,10 +34,14 @@
     </div>
 
     <div class="col-5">
-      <%= image_tag @lifehack.get_image(300, 300) %>
-      <% @comments.each do |comment| %>
-        <%= comment.comment %>
-      <% end %>
+      <div class="row my-3">
+        <%= image_tag @lifehack.get_image(400, 400) %>
+      </div>
+      <div class="row my-3">
+        <% @comments.each do |comment| %>
+          <%= comment.comment %>
+        <% end %>
+      </div>
     </div>
 
     <div class="col-4">
