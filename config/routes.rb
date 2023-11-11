@@ -20,18 +20,20 @@ Rails.application.routes.draw do
     resources :item_favorites, only:[:destroy]
   end
 
+  get "search" => "searches#search"
   get '/users/unsubscribe' => 'public/users#unsubscribe'
   patch '/users/withdraw' => 'public/users#withdraw'
 
    scope module: :public do
     resources :users, only:[:show, :edit, :update]
-    resources :lifehacks
-    resources :comments, only:[:show, :new, :create, :edit, :update, :destroy]
-    resource :favorites, only:[:create, :destroy]
-    resources :items
-    resources :item_comments, only:[:show, :new, :create, :edit, :update, :destroy]
-    resource :item_favorites, only:[:create, :destroy]
+    resources :lifehacks do
+      resource :favorites, only:[:create, :destroy]
+      resources :comments, only:[:show, :new, :create, :edit, :update, :destroy]
+    end
+    resources :items do
+      resource :item_favorites, only:[:create, :destroy]
+      resources :item_comments, only:[:show, :new, :create, :edit, :update, :destroy]
+    end
   end
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
