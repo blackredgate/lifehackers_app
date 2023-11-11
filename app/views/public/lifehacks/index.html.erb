@@ -1,0 +1,32 @@
+<div class="card-list-container py-5">
+  <div class="col-md-6"></div>
+  <div class="col-md-2">
+    <h3>
+      <%= link_to new_lifehack_path, class: 'text-dark' do %>
+        +
+      <% end %>
+    </h3>
+  </div>
+
+  <% @lifehacks.each do |lifehack| %>
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <%= link_to lifehack_path(lifehack.id) do %>
+      <%= image_tag lifehack.get_image(200, 200), class:"card-img-top"; %>
+    <% end %>
+
+    <div class="card-body">
+      <div class="row">
+        <div class="col-10">
+          <p class="card-title">
+            <%= link_to(lifehack_path(lifehack.id), class:"text-dark") do %>
+              <strong><i class="far fa-flag"></i><span> <%= lifehack.title %></span></strong>
+            <% end %>
+          </p>
+          <span><i class="fas fa-user"></i> By <%= lifehack.user.user_name %> ｜ </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+</div>
