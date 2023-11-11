@@ -20,50 +20,67 @@
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-            <% if admin_signed_in? %><%# 管理者ログイン時表示 %>
-              <li class="nav-item">
-                <%# link_to 'Users', users_path, class: 'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "LifeHacks", lifehacks_path,  class: 'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%# link_to 'UsefulItems', items_path, class: 'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
-              </li>
-             <% elsif user_signed_in? %><%# ユーザーログイン時表示 %>
-              <li class="nav-item">
-                <%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "LifeHacks", lifehacks_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%# link_to "UsefulItems", items_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%# link_to "LifeHacks", lifehacks_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%# link_to "UsefulItems", items_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
-              </li>
+
+          <% if user_signed_in? %>
+              <div class="row my-2">
+                <div class="search_form">
+                  <%= form_with url: search_path, local: true, method: :get do |f| %>
+                    <%= f.text_field :word %>
+                    <%= f.select :range, options_for_select([['LifeHack'], ['Item']]) %>
+                    <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
+                    <%= f.submit "検索", class: "btn btn-primary" %>
+                  <% end %>
+                </div>
+              </div>
             <% end %>
-            </ul>
+
+          <div class="row my-2">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+              <% if admin_signed_in? %><%# 管理者ログイン時表示 %>
+                <li class="nav-item">
+                  <%# link_to 'Users', users_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "LifeHacks", lifehacks_path,  class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%# link_to 'UsefulItems', items_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+                </li>
+               <% elsif user_signed_in? %><%# ユーザーログイン時表示 %>
+                <li class="nav-item">
+                  <%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "LifeHacks", lifehacks_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%# link_to "UsefulItems", items_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%# link_to "LifeHacks", lifehacks_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%# link_to "UsefulItems", items_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+                </li>
+              <% end %>
+              </ul>
+            </div>
           </div>
+
         </div>
       </nav>
     </header>

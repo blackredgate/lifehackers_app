@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :item_favorites, only:[:destroy]
   end
 
+  get "search" => "searches#search"
   get '/users/unsubscribe' => 'public/users#unsubscribe'
   patch '/users/withdraw' => 'public/users#withdraw'
 

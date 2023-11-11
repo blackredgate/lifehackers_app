@@ -20,4 +20,18 @@ class Lifehack < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+  
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @lifehack = Lifehack.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @lifehack = Lifehack.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @lifehack = Lifehack.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @lifehack = Lifehack.where("name LIKE?","%#{word}%")
+    else
+      @lifehack = Lifehack.all
+    end
+  end
 end
