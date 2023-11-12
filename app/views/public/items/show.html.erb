@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row my-3">
+
+    <% if user_signed_in? %>
+      <%= render partial: 'item_c&f', locals: { comment: @item_comment, favorite: @item_favorite } %>
+    <% else %>
+      <div class="center-block">
+        <div class="center-block">
+          <p class="text-center">
+            コメント投稿とお気に入り登録は<br>
+            ユーザー登録後に使用できます
+          </p>
+        </div>
+        <%= link_to "ユーザー登録", new_user_registration_path, class: 'btn btn-outline-info' %>
+      </div>
+    <% end %>
+
+    <div class="col-5">
+      <div class="row my-3">
+        <div  class="center-block">
+          <%= image_tag @item.get_image(400, 400) %>
+        </div>
+      </div>
+      <div class="row my-3">
+        <table class="table">
+          <tbody>
+            <% @item_comments.each do |item_comment| %>
+              <tr>
+                <td><%= item_comment.item_comment %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div  class="center-block">
+        <h4><%= @item.item_title %></h4>
+      </div>
+      <%= @item.item_body %>
+    </div>
+  </div>
+</div>
