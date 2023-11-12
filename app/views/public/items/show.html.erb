@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row my-3">
+
+    <%= render partial: 'item_c&f', locals: { comment: @item_comment, favorite: @item_favorite } %>
+
+    <div class="col-5">
+      <div class="row my-3">
+        <div  class="center-block">
+          <%= image_tag @item.get_image(400, 400) %>
+        </div>
+      </div>
+      <div class="row my-3">
+        <table class="table">
+          <tbody>
+            <% @item_comments.each do |comment| %>
+              <tr>
+                <td><%= comment.comment %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div  class="center-block">
+        <h4><%= @item.item_title %></h4>
+      </div>
+      <%= @item.item_body %>
+    </div>
+  </div>
+</div>
