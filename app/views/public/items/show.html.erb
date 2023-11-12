@@ -1,7 +1,19 @@
 <div class="container">
   <div class="row my-3">
 
-    <%= render partial: 'item_c&f', locals: { comment: @item_comment, favorite: @item_favorite } %>
+    <% if user_signed_in? %>
+      <%= render partial: 'item_c&f', locals: { comment: @item_comment, favorite: @item_favorite } %>
+    <% else %>
+      <div class="center-block">
+        <div class="center-block">
+          <p class="text-center">
+            コメント投稿とお気に入り登録は<br>
+            ユーザー登録後に使用できます
+          </p>
+        </div>
+        <%= link_to "ユーザー登録", new_user_registration_path, class: 'btn btn-outline-info' %>
+      </div>
+    <% end %>
 
     <div class="col-5">
       <div class="row my-3">
@@ -12,9 +24,9 @@
       <div class="row my-3">
         <table class="table">
           <tbody>
-            <% @item_comments.each do |comment| %>
+            <% @item_comments.each do |item_comment| %>
               <tr>
-                <td><%= comment.comment %></td>
+                <td><%= item_comment.item_comment %></td>
               </tr>
             <% end %>
           </tbody>
