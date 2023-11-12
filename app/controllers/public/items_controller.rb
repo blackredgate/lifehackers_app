@@ -35,7 +35,7 @@ class Public::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @item_comments = ItemComment.all
+    @item_comments = @item.comments
     @item_comment = ItemComment.new
   end
 

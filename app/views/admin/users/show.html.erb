@@ -40,4 +40,81 @@
       </div>
     </div>
   </div>
+
+    <div class="row my-1">
+      <div class="col-md-3">
+        <table class="table table-bordered">
+          <thead>
+            <tr><th>ライフハック</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <% @lifehacks.each do |lifehack| %>
+                <td><%= link_to lifehack_path(lifehack.id) do %><%= lifehack.title %><% end %></td>
+                <% if @user.id == current_user.id %>
+                  <td><%= link_to "Edit", edit_lifehack_path(lifehack.id), class: 'btn btn-success' %></td>
+                  <td><%= link_to "Destroy", lifehack_path(lifehack.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
+                <% end %>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-md-3">
+        <table class="table table-bordered">
+          <thead>
+            <tr><th>ライフハックへのコメント</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <% @comments.each do |comment| %>
+                <td><%= link_to lifehack_path(comment.lifehack.id) do %><%= comment.comment %><% end %></td>
+                <% if @user.id == current_user.id %>
+                  <td><%= link_to "Edit", edit_lifehack_comment_path(comment.id), class: 'btn btn-success' %></td>
+                  <td><%= link_to "Destroy", lifehack_comment_path(comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
+                <% end %>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-md-3">
+        <table class="table table-bordered">
+          <thead>
+            <tr><th>便利グッズ</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <% @items.each do |item| %>
+                <td><%= link_to item_path(item.id) do %><%= item.item_title %><% end %></td>
+                <% if @user.id == current_user.id %>
+                  <td><%= link_to "Edit", edit_item_path(item.id), class: 'btn btn-success' %></td>
+                  <td><%= link_to "Destroy", item_path(item.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
+                <% end %>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-md-3">
+        <table class="table table-bordered">
+          <thead>
+            <tr><th>便利グッズへのコメント</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <% @item_comments.each do |item_comment| %>
+                <td><%= link_to item_path(item_comment.item.id) do %><%= item_comment.item_comment %><% end %></td>
+                <% if @user.id == current_user.id %>
+                  <td><%= link_to "Edit", edit_item_item_comment_path(item_comment.id), class: 'btn btn-success' %></td>
+                  <td><%= link_to "Destroy", item_item_comment_path(item_comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
+                <% end %>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 </div>
