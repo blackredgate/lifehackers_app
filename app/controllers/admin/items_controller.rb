@@ -11,7 +11,7 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @item_comments = @item.comments
+    @item_comments = @item.item_comments
     @item_comment = ItemComment.new
   end
 end

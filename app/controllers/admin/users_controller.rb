@@ -5,6 +5,10 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @lifehacks = @user.lifehacks
+    @comments = @user.comments
+    @items = @user.items
+    @item_comments = @user.item_comments
   end
 
   def edit
@@ -25,5 +29,5 @@ class Admin::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:user_name, :email, :is_deleted)
   end
-  
+
 end
