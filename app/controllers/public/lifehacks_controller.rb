@@ -35,7 +35,7 @@ class Public::LifehacksController < ApplicationController
 
   def show
     @lifehack = Lifehack.find(params[:id])
-    @comments = Comment.all
+    @comments = @lifehack.comments
     @comment = Comment.new
   end
 
