@@ -4,6 +4,8 @@ class Lifehack < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :lifehack_tags, dependent: :destroy
+  accepts_nested_attributes_for :lifehack_tags, allow_destroy: true
 
   validates :title, presence: true
   validates :body, presence: true
@@ -34,4 +36,5 @@ class Lifehack < ApplicationRecord
       @lifehack = Lifehack.all
     end
   end
+  
 end

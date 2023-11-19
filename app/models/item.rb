@@ -4,6 +4,8 @@ class Item < ApplicationRecord
   belongs_to :user
   has_many :item_comments, dependent: :destroy
   has_many :item_favorites, dependent: :destroy
+  has_many :item_tags, dependent: :destroy
+  accepts_nested_attributes_for :item_tags, allow_destroy: true
 
   validates :item_title, presence: true
   validates :item_body, presence: true

@@ -36,6 +36,9 @@
     <div class="col-4">
       <div  class="center-block">
         <h4><%= @lifehack.title %></h4>
+        <% @lifehack.lifehack_tags.each  do |ltag| %>
+          <%= ltag.ltag_name %>
+        <% end %>
       </div>
       <%= @lifehack.body %>
     </div>

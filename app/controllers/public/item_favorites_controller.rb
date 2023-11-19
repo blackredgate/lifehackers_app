@@ -1,4 +1,6 @@
 class Public::ItemFavoritesController < ApplicationController
+  before_action :guest_check, only: [:create, :destroy]
+  
   def create
     item = Item.find(params[:item_id])
     item_favorite = current_user.item_favorites.new(item_id: item.id)

@@ -1,0 +1,2 @@
+class IItag < ApplicationRecord
+end

@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-
+  
+  def guest_check
+    if current_user.email == "guest@example.com"
+      redirect_to root_path,notice: "このページを見るには会員登録が必要です。"
+    end
+  end
+  
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:user_name])

@@ -1,6 +1,9 @@
 class Public::ItemsController < ApplicationController
+  before_action :guest_check, only: [:new, :create, :edit, :update, :destroy]
+  
   def new
     @item = Item.new
+    @item_tag = @item.item_tags.new
   end
 
   def create
@@ -42,6 +45,6 @@ class Public::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit( :image, :item_title, :item_body)
+    params.require(:item).permit( :image, :item_title, :item_body, item_tags_attributes: [:itag_name, :_destroy, :id])
   end
 end

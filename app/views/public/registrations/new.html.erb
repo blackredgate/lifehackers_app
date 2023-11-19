@@ -81,6 +81,11 @@
                 <td>　　　　　　</td>
                 <td><%= link_to "To Login", new_user_session_path, class: 'btn btn-outline-primary' %></td>
               </tr>
+              <tr>
+                <td>お試しで使ってみる</td>
+                <td>　　　　　　</td>
+                <td><%= link_to 'Guest Login（閲覧用）', users_guest_sign_in_path, method: :post, class: 'btn btn-outline-primary' %></td>
+              </tr>
             </table>
           </div>
       </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_25_124044) do
+ActiveRecord::Schema.define(version: 2023_11_18_162328) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +67,13 @@ ActiveRecord::Schema.define(version: 2023_10_25_124044) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "i_itags", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "item_tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "item_comments", force: :cascade do |t|
     t.integer "item_id", null: false
     t.integer "user_id", null: false
@@ -82,6 +89,14 @@ ActiveRecord::Schema.define(version: 2023_10_25_124044) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "item_tags", force: :cascade do |t|
+    t.string "itag_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "item_id"
+    t.index ["item_id"], name: "index_item_tags_on_item_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "item_title", null: false
@@ -90,10 +105,25 @@ ActiveRecord::Schema.define(version: 2023_10_25_124044) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "lifehack_tags", force: :cascade do |t|
+    t.string "ltag_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "lifehack_id"
+    t.index ["lifehack_id"], name: "index_lifehack_tags_on_lifehack_id"
+  end
+
   create_table "lifehacks", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title", null: false
     t.text "body", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ls", force: :cascade do |t|
+    t.integer "lifehack_id", null: false
+    t.integer "lifehack_tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -114,4 +144,6 @@ ActiveRecord::Schema.define(version: 2023_10_25_124044) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "item_tags", "items"
+  add_foreign_key "lifehack_tags", "lifehacks"
 end
