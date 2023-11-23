@@ -2,34 +2,48 @@
   <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-2">
-      <h1>
-        
-        <%= link_to new_lifehack_path, class: 'text-dark' do %>
-          +
+        <% if user_signed_in? %>
+          <% email = current_user.email %>
+          <% if email == "guest@example.com" %>
+            <h4>投稿機能の利用は本登録が必要です</h4>
+          <% else %>
+            <h1>
+              <%= link_to new_lifehack_path, class: 'text-dark' do %>
+                +
+              <% end %>
+            </h1>
+          <% end %>
+        <% else %>
+          <h4>投稿機能の利用は登録ユーザー限定です</h4>
         <% end %>
-      </h1>
     </div>
   </div>
 
   <% @lifehacks.each do |lifehack| %>
-  <div class="card w-50 mx-auto mt-4 shadow-lg">
-    <%= link_to lifehack_path(lifehack.id) do %>
-      <%= image_tag lifehack.get_image(200, 200), class:"card-img-top"; %>
-    <% end %>
+    <div class="card w-50 mx-auto mt-4 shadow-lg">
+      <%= link_to lifehack_path(lifehack.id) do %>
+        <%= image_tag lifehack.get_image(200, 200), class:"card-img-top"; %>
+      <% end %>
 
-    <div class="card-body">
-      <div class="row">
-        <div class="col-10">
-          <p class="card-title">
-            <%= link_to(lifehack_path(lifehack.id), class:"text-dark") do %>
-              <strong><i class="far fa-flag"></i><span> <%= lifehack.title %></span></strong>
-            <% end %>
-          </p>
-          <span><i class="fas fa-user"></i> By <%= lifehack.user.user_name %> ｜ </span>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-10">
+            <p class="card-title">
+              <%= link_to(lifehack_path(lifehack.id), class:"text-dark") do %>
+                <strong><i class="far fa-flag"></i><span> <%= lifehack.title %></span></strong>
+              <% end %>
+            </p>
+            <span>
+              <i class="fas fa-user"></i>
+              By <%= lifehack.user.user_name %> ｜
+              <% lifehack.lifehack_tags.each do |lifehack_tag| %>
+                <%= lifehack_tag.ltag_name %>
+              <% end %>
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   <% end %>
-
+  <%= paginate @lifehacks %>
 </div>

@@ -33,14 +33,13 @@ class Public::LifehacksController < ApplicationController
   end
 
   def index
-    @lifehacks = Lifehack.all
+    @lifehacks = Lifehack.page(params[:page])
   end
 
   def show
     @lifehack = Lifehack.find(params[:id])
     @comments = @lifehack.comments
     @comment = Comment.new
-    # @lifehack_tag = @lifehack.lifehack_tags 
   end
 
   private

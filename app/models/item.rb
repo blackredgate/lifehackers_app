@@ -25,13 +25,13 @@ class Item < ApplicationRecord
 
   def self.looks(search, word)
     if search == "perfect_match"
-      @item = Item.where("name LIKE?", "#{word}")
+      @item = Item.where("item_body LIKE?", "#{word}")
     elsif search == "forward_match"
-      @item = Item.where("name LIKE?","#{word}%")
+      @item = Item.where("item_body LIKE?", "#{word}%")
     elsif search == "backward_match"
-      @item = Item.where("name LIKE?","%#{word}")
+      @item = Item.where("item_body LIKE?", "%#{word}")
     elsif search == "partial_match"
-      @item = Item.where("name LIKE?","%#{word}%")
+      @item = Item.where("item_body LIKE?", "%#{word}%")
     else
       @item = Item.all
     end

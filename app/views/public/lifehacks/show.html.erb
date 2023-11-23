@@ -1,7 +1,20 @@
 <div class="container">
   <div class="row my-3">
     <% if user_signed_in? %>
-      <%= render partial: 'c&f', locals: { comment: @comment, favorite: @favorite } %>
+      <% email = current_user.email %>
+      <% if email == "guest@example.com" %>
+        <div class="center-block">
+        <div class="center-block">
+          <p class="text-center">
+            コメント投稿とお気に入り登録は<br>
+            本登録後に使用できます
+          </p>
+        </div>
+        <%= link_to "ユーザー登録", new_user_registration_path, class: 'btn btn-outline-info' %>
+      </div>
+      <% else %>
+        <%= render partial: 'c&f', locals: { comment: @comment, favorite: @favorite } %>
+      <% end %>
     <% else %>
       <div class="center-block">
         <div class="center-block">
@@ -36,8 +49,8 @@
     <div class="col-4">
       <div  class="center-block">
         <h4><%= @lifehack.title %></h4>
-        <% @lifehack.lifehack_tags.each  do |ltag| %>
-          <%= ltag.ltag_name %>
+        <% @lifehack.lifehack_tags.each  do |lifehack_tag| %>
+          <%= lifehack_tag.ltag_name %>
         <% end %>
       </div>
       <%= @lifehack.body %>
