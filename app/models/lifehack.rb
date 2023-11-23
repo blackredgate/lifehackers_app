@@ -10,7 +10,7 @@ class Lifehack < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
   validates :image, presence: true
-  
+
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -18,11 +18,11 @@ class Lifehack < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
   def self.looks(search, word)
     if search == "perfect_match"
       @lifehack = Lifehack.where("body LIKE?", "#{word}")

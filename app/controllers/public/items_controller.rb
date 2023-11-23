@@ -1,6 +1,6 @@
 class Public::ItemsController < ApplicationController
   before_action :guest_check, only: [:new, :create, :edit, :update, :destroy]
-  
+
   def new
     @item = Item.new
     @item_tag = @item.item_tags.new
@@ -38,13 +38,13 @@ class Public::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @item_comments = @item.comments
+    @item_comments = @item.item_comments
     @item_comment = ItemComment.new
   end
 
   private
 
   def item_params
-    params.require(:item).permit( :image, :item_title, :item_body, item_tags_attributes: [:itag_name, :_destroy, :id])
+    params.require(:item).permit(:image, :item_title, :item_body, item_tags_attributes: [:itag_name, :_destroy, :id])
   end
 end
