@@ -6,12 +6,11 @@ class Admin::ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    @items = Item.page(params[:page])
   end
 
   def show
     @item = Item.find(params[:id])
     @item_comments = @item.item_comments
-    @item_comment = ItemComment.new
   end
 end
