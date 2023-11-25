@@ -2,14 +2,14 @@
   <div class="row my-4">
     <div class="col-md-1"></div>
     <div class="col-md-2">
-      <p class="text-center bg-secondary">編集</p>
+      <h2>編集</h2>
     </div>
   </div>
 
   <div class="row my-4">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-      <%= form_with model: @lifehack, url:lifehack_path(@lifehack.id), method: :patch do |f| %>
+      <%= form_with model: @lifehack, url: lifehack_path(@lifehack.id), method: :patch do |f| %>
         <table class="table table-borderless">
           <tr>
             <th>画像</th>

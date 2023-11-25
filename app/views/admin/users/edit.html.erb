@@ -1,48 +1,37 @@
 <div class="container">
   <div class="row my-4">
-    <div class="col-md-3">
-      <p class="bg-secondary">ユーザー情報編集</p>
+    <div class="col-md-1"></div>
+    <div class="col-md-2">
+      <h2>ユーザー情報編集</h2>
     </div>
   </div>
 
   <div class="row my-4">
+    <div class="col-md-2"></div>
     <div class="col-md-8">
       <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
-        <div class="row">
-          <div class="col-md-3">
-            <label>ユーザーネーム</label>
-          </div>
-          <div class="col-md-9 d-inline-flex">
-            <%= f.text_field :user_name %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-3">
-            <label>メールアドレス</label>
-          </div>
-          <div class="col-md-9">
-            <%= f.text_field :email %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-3">
-            <label>ステータス</label>
-          </div>
-          <div class="col-md-9">
-            <%= f.radio_button :is_deleted, "false" %>
-            <%= f.label :is_deleted_false, "有効" %>
-            <%= f.radio_button :is_deleted, "true" %>
-            <%= f.label :is_deleted_true, "退会" %>
-          </div>
-        </div>
-
-        <div class="d-inline-flex">
-          <div class="mx-4">
-            <%= f.submit '変更を保存', class:'btn btn-sm btn-success' %>
-          </div>
-        </div>
+        <table class="table table-borderless">
+          <tr>
+            <th>ユーザーネーム</th>
+            <td><%= f.text_field :user_name %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= f.text_field :email %></td>
+          </tr>
+          <tr>
+            <th>ステータス</th>
+            <td>
+              <%= f.radio_button :is_deleted, "false" %>
+              <%= f.label :is_deleted_false, "有効" %>
+              <%= f.radio_button :is_deleted, "true" %>
+              <%= f.label :is_deleted_true, "退会" %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= f.submit '変更を保存', class:'btn btn-sm btn-success' %></td>
+          </tr>
+        </table>
       <% end %>
     </div>
   </div>

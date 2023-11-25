@@ -29,6 +29,7 @@
 
     <div class="col-5">
       <div class="row my-3">
+        <h4 class="text-center"><%= @item.item_title %></h4>
         <div  class="mx-auto">
           <%= image_tag @item.get_image(400, 400) %>
         </div>
@@ -39,6 +40,7 @@
             <% @item_comments.each do |item_comment| %>
               <tr>
                 <td><%= item_comment.item_comment %></td>
+                <td><%= item_comment.user.user_name %></td>
               </tr>
             <% end %>
           </tbody>
@@ -48,7 +50,11 @@
 
     <div class="col-4">
       <div  class="center-block">
-        <h4><%= @item.item_title %></h4>
+        <h5 class="text-center">
+          <%= link_to user_path(@item.user.id) do %>
+            <%= @item.user.user_name %>
+          <% end %>
+        </h5>
         <% @item.item_tags.each  do |item_tag| %>
           <%= item_tag.itag_name %>
         <% end %>
