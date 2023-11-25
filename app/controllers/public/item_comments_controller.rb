@@ -1,4 +1,6 @@
 class Public::ItemCommentsController < ApplicationController
+  before_action :guest_check, only: [:new, :create, :edit, :update, :destroy]
+  
   def create
     item = Item.find(params[:item_id])
     item_comment = current_user.item_comments.new(item_comment_params)

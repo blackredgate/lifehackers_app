@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+   before_action :guest_check, only: [:create, :edit, :update, :destroy]
+   
    def create
     lifehack = Lifehack.find(params[:lifehack_id])
     comment = current_user.comments.new(comment_params)

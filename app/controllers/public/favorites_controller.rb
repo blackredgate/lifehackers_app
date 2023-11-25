@@ -1,4 +1,6 @@
 class Public::FavoritesController < ApplicationController
+  before_action :guest_check, only: [:create, :destroy]
+  
   def create
     lifehack = Lifehack.find(params[:lifehack_id])
     favorite = current_user.favorites.new(lifehack_id: lifehack.id)

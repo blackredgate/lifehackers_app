@@ -1,6 +1,9 @@
 class Public::LifehacksController < ApplicationController
+  before_action :guest_check, only: [:new, :create, :edit, :update, :destroy]
+
   def new
     @lifehack = Lifehack.new
+    @lifehack_tag = @lifehack.lifehack_tags.new
   end
 
   def create
@@ -30,7 +33,7 @@ class Public::LifehacksController < ApplicationController
   end
 
   def index
-    @lifehacks = Lifehack.all
+    @lifehacks = Lifehack.page(params[:page])
   end
 
   def show
@@ -42,6 +45,6 @@ class Public::LifehacksController < ApplicationController
   private
 
   def lifehack_params
-    params.require(:lifehack).permit( :image, :title, :body)
+    params.require(:lifehack).permit(:image, :title, :body, lifehack_tags_attributes: [:ltag_name, :_destroy, :id])
   end
 end

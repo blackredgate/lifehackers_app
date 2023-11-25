@@ -4,6 +4,8 @@ class Item < ApplicationRecord
   belongs_to :user
   has_many :item_comments, dependent: :destroy
   has_many :item_favorites, dependent: :destroy
+  has_many :item_tags, dependent: :destroy
+  accepts_nested_attributes_for :item_tags, allow_destroy: true
 
   validates :item_title, presence: true
   validates :item_body, presence: true
@@ -23,13 +25,13 @@ class Item < ApplicationRecord
 
   def self.looks(search, word)
     if search == "perfect_match"
-      @item = Item.where("name LIKE?", "#{word}")
+      @item = Item.where("item_body LIKE?", "#{word}")
     elsif search == "forward_match"
-      @item = Item.where("name LIKE?","#{word}%")
+      @item = Item.where("item_body LIKE?", "#{word}%")
     elsif search == "backward_match"
-      @item = Item.where("name LIKE?","%#{word}")
+      @item = Item.where("item_body LIKE?", "%#{word}")
     elsif search == "partial_match"
-      @item = Item.where("name LIKE?","%#{word}%")
+      @item = Item.where("item_body LIKE?", "%#{word}%")
     else
       @item = Item.all
     end

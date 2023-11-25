@@ -4,107 +4,168 @@
       <div>
         <%= flash[:notice] %>
       </div>
-      <p class="bg-secondary">マイページ</p>
+      <h2>マイページ</h2>
     </div>
   </div>
 
-    <div class="row my-2">
-      <div class="col-md-8">
-        <div class="d-inline-flex">
-          <div class="mx-4">
-            <p><strong>登録情報</strong></p>
-          </div>
-          <% if @user.id == current_user.id %>
-            <%= link_to edit_user_path(@user.id), class: 'btn btn-success' do %>
-              編集
-            <% end %>
-          <% end %>
-        </div>
-
-        <table class="table table-bordered">
+  <div class="row my-2">
+    <div class="col-md-8">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>登録情報</th>
+            <th>
+              <% if @user.email == "guest@example.com" %>
+                本登録後はユーザー情報の更新ができます
+              <% elsif @user.id == current_user.id %>
+                <%= link_to edit_user_path(@user.id), class: 'btn btn-success' do %>
+                  編集
+                <% end %>
+              <% else %>
+                ユーザー登録後はユーザー情報の更新ができます
+              <% end %>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
           <tr><td class="table-active text-nowrap">ユーザーネーム</td><td class="text-nowrap"><%= @user.user_name %></td></tr>
           <tr><td class="table-active text-nowrap">メールアドレス</td><td class="text-nowrap"><%= @user.email %></td></tr>
-        </table>
-
-      </div>
+        </tbody>
+      </table>
     </div>
+  </div>
 
-    <div class="row my-1">
-      <div class="col-md-3">
-        <table class="table table-bordered">
-          <thead>
-            <tr><th>ライフハック</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <% @lifehacks.each do |lifehack| %>
-                <td><%= link_to lifehack_path(lifehack.id) do %><%= lifehack.title %><% end %></td>
+  <div class="row my-1">
+    <div class="col-md-6">
+      <table class="table table-bordered">
+        <thead>
+          <tr><th>Favorite_LifeHack</th></th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% if @user.email == "guest@example.com" %>
+              <td>本登録後はお気に入り登録ができます</td>
+            <% else %>
+              <% if @user.id == current_user.id %>
+                <% @favorites.each do |favorite| %>
+                  <td><%= link_to lifehack_path(favorite.lifehack.id) do %><%= favorite.lifehack.title %><% end %></td>
+                <% end %>
+              <% end %>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="col-md-6">
+      <table class="table table-bordered">
+        <thead>
+          <tr><th>Favorite_UsefulItem</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% if @user.email == "guest@example.com" %>
+              <td>本登録後はお気に入り登録ができます</td>
+            <% else %>
+              <% if @user.id == current_user.id %>
+                <% @item_favorites.each do |item_favorite| %>
+                  <td><%= link_to item_path(item_favorite.item.id) do %><%= item_favorite.item.item_title %><% end %></td>
+                  <td>
+                    <% i_favorite = item_favorite.item.id %>
+                    <%= i_favorite.item_tag.itag_name %>
+                  </td>
+                <% end %>
+              <% end %>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row my-1">
+    <div class="col-md-6">
+      <table class="table table-bordered">
+        <thead>
+          <tr><th>LifeHack</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% @lifehacks.each do |lifehack| %>
+              <td><%= link_to lifehack_path(lifehack.id) do %><%= lifehack.title %><% end %></td>
+              <% if @user.email == "guest@example.com" %>
+                <td>本登録後は投稿した記事の編集ができます</td>
+              <% else %>
                 <% if @user.id == current_user.id %>
                   <td><%= link_to "Edit", edit_lifehack_path(lifehack.id), class: 'btn btn-success' %></td>
                   <td><%= link_to "Destroy", lifehack_path(lifehack.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
                 <% end %>
               <% end %>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <div class="col-md-3">
-        <table class="table table-bordered">
-          <thead>
-            <tr><th>ライフハックへのコメント</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <% @comments.each do |comment| %>
-                <td><%= link_to lifehack_path(comment.lifehack.id) do %><%= comment.comment %><% end %></td>
-                <% if @user.id == current_user.id %>
-                  <td><%= link_to "Edit", edit_lifehack_comment_path(comment.id), class: 'btn btn-success' %></td>
-                  <td><%= link_to "Destroy", lifehack_comment_path(comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
-                <% end %>
-              <% end %>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="col-md-3">
-        <table class="table table-bordered">
-          <thead>
-            <tr><th>便利グッズ</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <% @items.each do |item| %>
-                <td><%= link_to item_path(item.id) do %><%= item.item_title %><% end %></td>
+    <div class="col-md-6">
+      <table class="table table-bordered">
+        <thead>
+          <tr><th>UsefulItem</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% @items.each do |item| %>
+              <td><%= link_to item_path(item.id) do %><%= item.item_title %><% end %></td>
+              <% if @user.email == "guest@example.com" %>
+                <td>本登録後は投稿した記事の編集ができます</td>
+              <% else %>
                 <% if @user.id == current_user.id %>
                   <td><%= link_to "Edit", edit_item_path(item.id), class: 'btn btn-success' %></td>
                   <td><%= link_to "Destroy", item_path(item.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
                 <% end %>
               <% end %>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="col-md-3">
-        <table class="table table-bordered">
-          <thead>
-            <tr><th>便利グッズへのコメント</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <% @item_comments.each do |item_comment| %>
-                <td><%= link_to item_path(item_comment.item.id) do %><%= item_comment.item_comment %><% end %></td>
-                <% if @user.id == current_user.id %>
-                  <td><%= link_to "Edit", edit_item_item_comment_path(item_comment.id), class: 'btn btn-success' %></td>
-                  <td><%= link_to "Destroy", item_item_comment_path(item_comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
-                <% end %>
-              <% end %>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
+
+  <div class="row my-1">
+    <div class="col-md-6">
+      <table class="table table-bordered">
+        <thead>
+          <tr><th>comment_LifeHack</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% @comments.each do |comment| %>
+              <td><%= link_to lifehack_path(comment.lifehack.id) do %><%= comment.comment %><% end %></td>
+              <% if @user.id == current_user.id %>
+                <td><%= link_to "Destroy", lifehack_comment_path(comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
+              <% end %>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-6">
+      <table class="table table-bordered">
+        <thead>
+          <tr><th>comment_UsefulItem</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% @item_comments.each do |item_comment| %>
+              <td><%= link_to item_path(item_comment.item.id) do %><%= item_comment.item_comment %><% end %></td>
+              <% if @user.id == current_user.id %>
+                <td><%= link_to "Destroy", item_item_comment_path(item_comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
+              <% end %>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

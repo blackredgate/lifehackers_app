@@ -24,6 +24,12 @@
               <td><%= f.text_area :body, size: "50x10" %></td>
             </tr>
             <tr>
+              <%= f.fields_for :lifehack_tags do |tag| %>
+                <th>タグ</th>
+                <td><%= tag.text_field :ltag_name, size: "40" %></td>
+              <% end %>
+            </tr>
+            <tr>
                <td><%= f.submit '投稿する！', class:'btn btn-sm btn-success' %></td>
             </tr>
           </table>

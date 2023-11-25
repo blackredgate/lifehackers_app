@@ -24,6 +24,13 @@
               <td><%= f.text_area :item_body, size: "50x10" %></td>
             </tr>
             <tr>
+              <%= f.fields_for :item_tags do |tag| %>
+                <td>タグ</td>
+                <td><%= tag.text_field :itag_name, size: "40" %></td>
+              <% end %>
+            </tr>
+            <tr>
+            <tr>
                <td><%= f.submit '投稿する！', class:'btn btn-sm btn-success' %></td>
             </tr>
           </table>

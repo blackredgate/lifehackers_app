@@ -10,7 +10,7 @@
 
     <div class="col-5">
       <div class="row my-3">
-        <div  class="center-block">
+        <div class="mx-auto">
           <%= image_tag @lifehack.get_image(400, 400) %>
         </div>
       </div>
@@ -30,6 +30,9 @@
     <div class="col-4">
       <div  class="center-block">
         <h4><%= @lifehack.title %></h4>
+        <% @lifehack.lifehack_tags.each do |lifehack_tag| %>
+          <%= lifehack_tag.ltag_name %>
+        <% end %>
       </div>
       <%= @lifehack.body %>
     </div>

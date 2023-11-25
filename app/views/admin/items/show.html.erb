@@ -10,7 +10,7 @@
 
     <div class="col-5">
       <div class="row my-3">
-        <div  class="center-block">
+        <div  class="mx-auto">
           <%= image_tag @item.get_image(400, 400) %>
         </div>
       </div>
@@ -30,6 +30,9 @@
     <div class="col-4">
       <div  class="center-block">
         <h4><%= @item.item_title %></h4>
+         <% @item.item_tags.each do |item_tag| %>
+          <%= item_tag.itag_name %>
+        <% end %>
       </div>
       <%= @item.item_body %>
     </div>

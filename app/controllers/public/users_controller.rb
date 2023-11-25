@@ -18,6 +18,8 @@ class Public::UsersController < ApplicationController
     @comments = @user.comments
     @items = @user.items
     @item_comments = @user.item_comments
+    @favorites = @user.favorites
+    @item_favorites = @user.item_favorites
   end
 
   def edit
