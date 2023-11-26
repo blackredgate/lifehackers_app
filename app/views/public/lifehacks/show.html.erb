@@ -40,7 +40,13 @@
             <% @comments.each do |comment| %>
               <tr>
                 <td><%= comment.comment %></td>
-                <td><%= comment.user.user_name %></td>
+                <td>
+                  <% if comment.user.id == current_user.id %>
+                    <%= link_to "Destroy", lifehack_comment_path(comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %>
+                  <% else %>
+                    <%= comment.user.user_name %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </tbody>

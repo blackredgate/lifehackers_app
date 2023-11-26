@@ -52,7 +52,7 @@
         </tbody>
       </table>
     </div>
-    
+
     <div class="col-md-6">
       <table class="table table-bordered">
         <thead>
@@ -70,7 +70,7 @@
       </table>
     </div>
   </div>
-      
+
   <div class="row my-1">
     <div class="col-md-6">
       <table class="table table-bordered">
@@ -80,14 +80,14 @@
         <tbody>
           <tr>
             <% @comments.each do |comment| %>
+              <td><%= comment.lifehack.title %></td>
               <td><%= link_to lifehack_path(comment.lifehack.id) do %><%= comment.comment %><% end %></td>
-              <td><%= link_to "Destroy", lifehack_comment_path(comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
             <% end %>
           </tr>
         </tbody>
       </table>
     </div>
-        
+
     <div class="col-md-6">
       <table class="table table-bordered">
         <thead>
@@ -96,8 +96,8 @@
         <tbody>
           <tr>
             <% @item_comments.each do |item_comment| %>
+              <td><%= item_comment.item.item_title %></td>
               <td><%= link_to item_path(item_comment.item.id) do %><%= item_comment.item_comment %><% end %></td>
-              <td><%= link_to "Destroy", item_item_comment_path(item_comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
             <% end %>
           </tr>
         </tbody>

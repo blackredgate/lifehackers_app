@@ -40,7 +40,13 @@
             <% @item_comments.each do |item_comment| %>
               <tr>
                 <td><%= item_comment.item_comment %></td>
-                <td><%= item_comment.user.user_name %></td>
+                <td>
+                  <% if item_comment.user.id == current_user.id %>
+                    <%= link_to "Destroy", item_item_comment_path(item_comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %>
+                  <% else %>
+                    <%= item_comment.user.user_name %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </tbody>

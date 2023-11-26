@@ -1,6 +1,6 @@
 class Public::ItemCommentsController < ApplicationController
   before_action :guest_check, only: [:new, :create, :edit, :update, :destroy]
-  
+
   def create
     item = Item.find(params[:item_id])
     item_comment = current_user.item_comments.new(item_comment_params)
@@ -10,8 +10,9 @@ class Public::ItemCommentsController < ApplicationController
   end
 
   def destroy
-    Item.find(params[:id]).destroy
-    redirect_to item_path(params[:item_id])
+    item = Item.find(params[:id])
+    ItemComment.find(params[:item_id]).destroy
+    redirect_to item_path(item)
   end
 
   private

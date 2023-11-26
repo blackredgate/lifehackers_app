@@ -22,14 +22,19 @@
                   編集
                 <% end %>
               <% else %>
-                ユーザー登録後はユーザー情報の更新ができます
+
               <% end %>
             </th>
           </tr>
         </thead>
         <tbody>
           <tr><td class="table-active text-nowrap">ユーザーネーム</td><td class="text-nowrap"><%= @user.user_name %></td></tr>
-          <tr><td class="table-active text-nowrap">メールアドレス</td><td class="text-nowrap"><%= @user.email %></td></tr>
+            <% if @user.id == current_user.id %>
+              <tr>
+                <td class="table-active text-nowrap">メールアドレス</td>
+                <td class="text-nowrap"><%= @user.email %></td>
+              </tr>
+            <% end %>
         </tbody>
       </table>
     </div>
@@ -56,7 +61,7 @@
         </tbody>
       </table>
     </div>
-    
+
     <div class="col-md-6">
       <table class="table table-bordered">
         <thead>
@@ -70,10 +75,6 @@
               <% if @user.id == current_user.id %>
                 <% @item_favorites.each do |item_favorite| %>
                   <td><%= link_to item_path(item_favorite.item.id) do %><%= item_favorite.item.item_title %><% end %></td>
-                  <td>
-                    <% i_favorite = item_favorite.item.id %>
-                    <%= i_favorite.item_tag.itag_name %>
-                  </td>
                 <% end %>
               <% end %>
             <% end %>
