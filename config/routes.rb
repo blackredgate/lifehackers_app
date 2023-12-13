@@ -16,11 +16,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only:[:index, :show, :edit, :update]
+    resources :item_comments, only:[:destroy]
+    resources :items, only:[:index, :show, :destroy]
     resources :lifehacks, only:[:index, :show, :destroy]
     resources :comments, only:[:destroy]
     resources :favorites, only:[:destroy]
-    resources :items, only:[:index, :show, :destroy]
-    resources :item_comments, only:[:destroy]
     resources :item_favorites, only:[:destroy]
   end
 

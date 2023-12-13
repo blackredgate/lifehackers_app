@@ -28,7 +28,7 @@
                   <%= item_tag.itag_name %>
                 <% end %>
               </td>
-              <td><%= link_to "削除", admin_lifehack_path(item.id), method: :delete, class: 'btn btn-danger' %></td>
+              <td><%= link_to "削除", admin_item_path(item.id), method: :delete, class: 'btn btn-danger' %></td>
             </tr>
           <% end %>
         </tbody>

@@ -1,10 +1,14 @@
 <div class="container">
   <div class="row my-2">
-    <div class="col-md-2">
+    <div class="col-md-6">
       <div>
         <%= flash[:notice] %>
       </div>
-      <h2>マイページ</h2>
+      <% if @user == current_user %>
+        <h2>マイページ</h2>
+      <% else %>
+        <h2><%= @user.user_name %>さんのページ</h2>
+      <% end %>
     </div>
   </div>
 
@@ -17,7 +21,7 @@
             <th>
               <% if @user.email == "guest@example.com" %>
                 本登録後はユーザー情報の更新ができます
-              <% elsif @user.id == current_user.id %>
+              <% elsif @user == current_user %>
                 <%= link_to edit_user_path(@user.id), class: 'btn btn-success' do %>
                   編集
                 <% end %>
@@ -29,7 +33,7 @@
         </thead>
         <tbody>
           <tr><td class="table-active text-nowrap">ユーザーネーム</td><td class="text-nowrap"><%= @user.user_name %></td></tr>
-            <% if @user.id == current_user.id %>
+            <% if @user == current_user %>
               <tr>
                 <td class="table-active text-nowrap">メールアドレス</td>
                 <td class="text-nowrap"><%= @user.email %></td>
@@ -51,7 +55,7 @@
             <% if @user.email == "guest@example.com" %>
               <td>本登録後はお気に入り登録ができます</td>
             <% else %>
-              <% if @user.id == current_user.id %>
+              <% if @user == current_user %>
                 <% @favorites.each do |favorite| %>
                   <td><%= link_to lifehack_path(favorite.lifehack.id) do %><%= favorite.lifehack.title %><% end %></td>
                 <% end %>
@@ -72,7 +76,7 @@
             <% if @user.email == "guest@example.com" %>
               <td>本登録後はお気に入り登録ができます</td>
             <% else %>
-              <% if @user.id == current_user.id %>
+              <% if @user == current_user %>
                 <% @item_favorites.each do |item_favorite| %>
                   <td><%= link_to item_path(item_favorite.item.id) do %><%= item_favorite.item.item_title %><% end %></td>
                 <% end %>
@@ -97,7 +101,7 @@
               <% if @user.email == "guest@example.com" %>
                 <td>本登録後は投稿した記事の編集ができます</td>
               <% else %>
-                <% if @user.id == current_user.id %>
+                <% if @user == current_user %>
                   <td><%= link_to "Edit", edit_lifehack_path(lifehack.id), class: 'btn btn-success' %></td>
                   <td><%= link_to "Destroy", lifehack_path(lifehack.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
                 <% end %>
@@ -120,7 +124,7 @@
               <% if @user.email == "guest@example.com" %>
                 <td>本登録後は投稿した記事の編集ができます</td>
               <% else %>
-                <% if @user.id == current_user.id %>
+                <% if @user == current_user %>
                   <td><%= link_to "Edit", edit_item_path(item.id), class: 'btn btn-success' %></td>
                   <td><%= link_to "Destroy", item_path(item.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
                 <% end %>
@@ -142,9 +146,6 @@
           <tr>
             <% @comments.each do |comment| %>
               <td><%= link_to lifehack_path(comment.lifehack.id) do %><%= comment.comment %><% end %></td>
-              <% if @user.id == current_user.id %>
-                <td><%= link_to "Destroy", lifehack_comment_path(comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
-              <% end %>
             <% end %>
           </tr>
         </tbody>
@@ -160,9 +161,6 @@
           <tr>
             <% @item_comments.each do |item_comment| %>
               <td><%= link_to item_path(item_comment.item.id) do %><%= item_comment.item_comment %><% end %></td>
-              <% if @user.id == current_user.id %>
-                <td><%= link_to "Destroy", item_item_comment_path(item_comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
-              <% end %>
             <% end %>
           </tr>
         </tbody>

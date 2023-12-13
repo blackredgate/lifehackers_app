@@ -3,7 +3,7 @@
     <div class="col-3">
       <% if admin_signed_in? %>
         <div class="center-block">
-          <%= link_to "削除", admin_lifehack_path(@item.id), method: :delete, class: 'btn btn-danger' %>
+          <%= link_to "削除", admin_item_path(@item.id), method: :delete, class: 'btn btn-danger' %>
         </div>
       <% end %>
     </div>
@@ -20,6 +20,7 @@
             <% @item_comments.each do |item_comment| %>
               <tr>
                 <td><%= item_comment.item_comment %></td>
+                <td><%= link_to "Destroy", admin_item_comment_path(item_comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
               </tr>
             <% end %>
           </tbody>

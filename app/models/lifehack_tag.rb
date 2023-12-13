@@ -6,10 +6,6 @@ class LifehackTag < ApplicationRecord
   def self.looks(search, word)
     if search == "perfect_match"
       @lifehack_tag = LifehackTag.where("ltag_name LIKE?", "#{word}")
-    elsif search == "forward_match"
-      @lifehack_tag = LifehackTag.where("ltag_name LIKE?", "#{word}%")
-    elsif search == "backward_match"
-      @lifehack_tag = LifehackTag.where("ltag_name LIKE?", "%#{word}")
     elsif search == "partial_match"
       @lifehack_tag = LifehackTag.where("ltag_name LIKE?", "%#{word}%")
     else

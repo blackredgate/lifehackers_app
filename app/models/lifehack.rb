@@ -25,11 +25,7 @@ class Lifehack < ApplicationRecord
 
   def self.looks(search, word)
     if search == "perfect_match"
-      @lifehack = Lifehack.where("body LIKE?", "#{word}")
-    elsif search == "forward_match"
-      @lifehack = Lifehack.where("body LIKE?", "#{word}%")
-    elsif search == "backward_match"
-      @lifehack = Lifehack.where("body LIKE?", "%#{word}")
+      @lifehack = Lifehack.where("title LIKE?", "#{word}")
     elsif search == "partial_match"
       @lifehack = Lifehack.where("body LIKE?", "%#{word}%")
     else

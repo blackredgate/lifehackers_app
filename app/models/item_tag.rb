@@ -6,10 +6,6 @@ class ItemTag < ApplicationRecord
    def self.looks(search, word)
     if search == "perfect_match"
       @item_tag = ItemTag.where("itag_name LIKE?", "#{word}")
-    elsif search == "forward_match"
-      @item_tag = ItemTag.where("itag_name LIKE?", "#{word}%")
-    elsif search == "backward_match"
-      @item_tag = ItemTag.where("itag_name LIKE?", "%#{word}")
     elsif search == "partial_match"
       @item_tag = ItemTag.where("itag_name LIKE?", "%#{word}%")
     else

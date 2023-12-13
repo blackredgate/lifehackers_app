@@ -2,7 +2,7 @@ class Admin::LifehacksController < ApplicationController
   def destroy
     lifehack = Lifehack.find(params[:id])
     lifehack.destroy
-    redirect_to lifehacks_path
+    redirect_to admin_lifehacks_path
   end
 
   def index

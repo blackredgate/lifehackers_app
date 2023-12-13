@@ -1,6 +1,7 @@
 class Admin::CommentsController < ApplicationController
   def destroy
-    Lifehack.find(params[:id]).destroy
-    redirect_to lifehack_path(params[:lifehack_id])
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to admin_lifehack_path(@comment.lifehack_id)
   end
 end
