@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="col-3">
+      <% if admin_signed_in? %>
+        <div class="center-block">
+          <%= link_to "削除", admin_item_path(@item.id), method: :delete, class: 'btn btn-danger' %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-5">
+      <div class="row my-3">
+        <div  class="mx-auto">
+          <%= image_tag @item.get_image(400, 400) %>
+        </div>
+      </div>
+      <div class="row my-3">
+        <table class="table">
+          <tbody>
+            <% @item_comments.each do |item_comment| %>
+              <tr>
+                <td><%= item_comment.item_comment %></td>
+                <td><%= link_to "Destroy", admin_item_comment_path(item_comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div  class="center-block">
+        <h4><%= @item.item_title %></h4>
+         <% @item.item_tags.each do |item_tag| %>
+          <%= item_tag.itag_name %>
+        <% end %>
+      </div>
+      <%= @item.item_body %>
+    </div>
+  </div>
+</div>

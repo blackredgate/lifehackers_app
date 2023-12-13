@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+   before_action :guest_check, only: [:create, :edit, :update, :destroy]
+
    def create
     lifehack = Lifehack.find(params[:lifehack_id])
     comment = current_user.comments.new(comment_params)
@@ -8,8 +10,9 @@ class Public::CommentsController < ApplicationController
    end
 
   def destroy
-    Lifehack.find(params[:id]).destroy
-    redirect_to lifehack_path(params[:lifehack_id])
+    lifehack = Lifehack.find(params[:id])
+    Comment.find(params[:lifehack_id]).destroy
+    redirect_to lifehack_path(lifehack)
   end
 
   private

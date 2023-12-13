@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
   def users_unsubscribe
   end
 
-  def users_withdraw
+  def withdraw
     @user = current_user
     @user.update!(is_deleted: true)
     reset_session
@@ -18,6 +18,8 @@ class Public::UsersController < ApplicationController
     @comments = @user.comments
     @items = @user.items
     @item_comments = @user.item_comments
+    @favorites = @user.favorites
+    @item_favorites = @user.item_favorites
   end
 
   def edit

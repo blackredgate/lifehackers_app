@@ -1,51 +1,70 @@
 <div class="container">
   <div class="row my-3">
-    <div class="col-3">
-      <%= current_user.user_name %>
-
-      <!-- 新規投稿フォーム -->
-      <div class="row my-3">
-        <div class="col-12">
-          <h4>コメント投稿</h4>
-          <%= form_with model: [@lifehack, @comment] do |f| %>
-            <%= f.text_area :comment, size: "30", placeholder: "コメントをここに" %>
-            <%= f.submit "投稿する！", class:'btn btn-sm btn-success' %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="row my-3">
-        <div class="col-12">
-          <% if @lifehack.favorited_by?(current_user) %>
-            <p>
-              <%= link_to lifehack_favorites_path(@lifehack), method: :delete do %>
-                ♥<%= @lifehack.favorites.count %> お気に入り
-              <% end %>
+    <% if user_signed_in? %>
+      <% email = current_user.email %>
+      <% if email == "guest@example.com" %>
+        <div class="center-block">
+          <div>
+            <p class="text-center">
+              コメント投稿とお気に入り登録は<br>
+              本登録後に使用できます
             </p>
-          <% else %>
-            <p>
-              <%= link_to lifehack_favorites_path(@lifehack), method: :post do %>
-                ♡<%= @lifehack.favorites.count %> お気に入り
-              <% end %>
-            </p>
-          <% end %>
-        </div>
+          </div>
+        <%= link_to "ユーザー登録", new_user_registration_path, class: 'btn btn-outline-info' %>
       </div>
-    </div>
+      <% else %>
+        <%= render partial: 'c&f', locals: { comment: @comment, favorite: @favorite } %>
+      <% end %>
+    <% else %>
+      <div class="center-block">
+        <div class="center-block">
+          <p class="text-center">
+            コメント投稿とお気に入り登録は<br>
+            ユーザー登録後に使用できます
+          </p>
+        </div>
+        <%= link_to "ユーザー登録", new_user_registration_path, class: 'btn btn-outline-info' %>
+      </div>
+    <% end %>
 
     <div class="col-5">
       <div class="row my-3">
-        <%= image_tag @lifehack.get_image(400, 400) %>
+        <h4 class="text-center"><%= @lifehack.title %></h4>
+        <div class="mx-auto">
+          <%= image_tag @lifehack.get_image(400, 400) %>
+        </div>
       </div>
       <div class="row my-3">
-        <% @comments.each do |comment| %>
-          <%= comment.comment %>
-        <% end %>
+        <table class="table">
+          <tbody>
+            <% @comments.each do |comment| %>
+              <tr>
+                <td><%= comment.comment %></td>
+                <td>
+                  <% if comment.user.id == current_user.id %>
+                    <%= link_to "Destroy", lifehack_comment_path(comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %>
+                  <% else %>
+                    <%= comment.user.user_name %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
 
     <div class="col-4">
-      <%= @lifehack.title %><br>
+      <div  class="center-block">
+        <h5 class="text-center">
+          <%= link_to user_path(@lifehack.user.id) do %>
+            <%= @lifehack.user.user_name %>
+          <% end %>
+        </h5>
+        <% @lifehack.lifehack_tags.each do |lifehack_tag| %>
+          <%= lifehack_tag.ltag_name %>
+        <% end %>
+      </div>
       <%= @lifehack.body %>
     </div>
   </div>

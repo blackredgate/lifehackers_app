@@ -2,12 +2,13 @@
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
+      <p></p>
       <p class="text-center">
         <strong>本当に退会しますか？</strong>
       </p>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
@@ -19,16 +20,16 @@
       </p>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-md-2"></div>
-    <div class="col-md-8 d-inline-flex center-block">
-      <div class="mx-4">
-         <%= link_to "退会しない", user_path(current_user.id), class:'btn btn-sm btn-primary' %>
-      </div>
-      <div class="mx-4">
-         <%= link_to "退会する", users_withdraw_path, method: :patch, class:'btn btn-sm btn-danger' %>
-      </div>
+    <div class="col-md-8">
+      <table class="table table-borderless">
+        <tr align=center>
+          <td><%= link_to "退会しない", user_path(current_user.id), class:'btn btn-sm btn-primary' %></td>
+          <td><%= link_to "退会する", users_withdraw_path, method: :patch, class:'btn btn-sm btn-danger' %></td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>

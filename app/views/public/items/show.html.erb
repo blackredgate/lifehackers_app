@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row my-3">
+    <% if user_signed_in? %>
+      <% email = current_user.email %>
+      <% if email == "guest@example.com" %>
+        <div class="center-block">
+        <div class="center-block">
+          <p class="text-center">
+            コメント投稿とお気に入り登録は<br>
+            本登録後に使用できます
+          </p>
+        </div>
+        <%= link_to "ユーザー登録", new_user_registration_path, class: 'btn btn-outline-info' %>
+      </div>
+      <% else %>
+        <%= render partial: 'item_c&f', locals: { comment: @item_comment, favorite: @item_favorite } %>
+      <% end %>
+    <% else %>
+      <div class="center-block">
+        <div class="center-block">
+          <p class="text-center">
+            コメント投稿とお気に入り登録は<br>
+            ユーザー登録後に使用できます
+          </p>
+        </div>
+        <%= link_to "ユーザー登録", new_user_registration_path, class: 'btn btn-outline-info' %>
+      </div>
+    <% end %>
+
+    <div class="col-5">
+      <div class="row my-3">
+        <h4 class="text-center"><%= @item.item_title %></h4>
+        <div  class="mx-auto">
+          <%= image_tag @item.get_image(400, 400) %>
+        </div>
+      </div>
+      <div class="row my-3">
+        <table class="table">
+          <tbody>
+            <% @item_comments.each do |item_comment| %>
+              <tr>
+                <td><%= item_comment.item_comment %></td>
+                <td>
+                  <% if item_comment.user.id == current_user.id %>
+                    <%= link_to "Destroy", item_item_comment_path(item_comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %>
+                  <% else %>
+                    <%= item_comment.user.user_name %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div  class="center-block">
+        <h5 class="text-center">
+          <%= link_to user_path(@item.user.id) do %>
+            <%= @item.user.user_name %>
+          <% end %>
+        </h5>
+        <% @item.item_tags.each  do |item_tag| %>
+          <%= item_tag.itag_name %>
+        <% end %>
+      </div>
+      <%= @item.item_body %>
+    </div>
+  </div>
+</div>

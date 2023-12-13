@@ -1,0 +1,86 @@
+<div class="card-list-container py-5">
+  <div class="col-md-6"></div>
+
+  <% if @range == "LifeHackタグ" %>
+    <% @lifehack_tags.each do |lifehack_tag| %>
+      <div class="card w-50 mx-auto mt-4 shadow-lg">
+        <%= link_to lifehack_path(lifehack_tag.lifehack.id) do %>
+          <%= image_tag lifehack_tag.lifehack.get_image(200, 200), class:"card-img-top"; %>
+        <% end %>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-10">
+              <p class="card-title">
+                <%= link_to(lifehack_path(lifehack_tag.lifehack.id), class:"text-dark") do %>
+                  <strong><i class="far fa-flag"></i><span> <%= lifehack_tag.lifehack.title %></span></strong>
+                <% end %>
+              </p>
+              <span><i class="fas fa-user"></i> By <% luser = lifehack_tag.lifehack.user %><%= luser.user_name %> ｜ </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% elsif @range == "LifeHack" %>
+    <% @lifehacks.each do |lifehack| %>
+      <div class="card w-50 mx-auto mt-4 shadow-lg">
+        <%= link_to lifehack_path(lifehack.id) do %>
+          <%= image_tag lifehack.get_image(200, 200), class:"card-img-top"; %>
+        <% end %>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-10">
+              <p class="card-title">
+                <%= link_to(lifehack_path(lifehack.id), class:"text-dark") do %>
+                  <strong><i class="far fa-flag"></i><span> <%= lifehack.title %></span></strong>
+                <% end %>
+              </p>
+              <span><i class="fas fa-user"></i> By <%= lifehack.user.user_name %> ｜ </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% elsif @range == "Itemタグ" %>
+    <% @item_tags.each do |item_tag| %>
+      <div class="card w-50 mx-auto mt-4 shadow-lg">
+        <%= link_to item_path(item_tag.item.id) do %>
+          <%= image_tag item_tag.item.get_image(200, 200), class:"card-img-top"; %>
+        <% end %>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-10">
+              <p class="card-title">
+                <%= link_to(item_path(item_tag.item.id), class:"text-dark") do %>
+                  <strong><i class="far fa-flag"></i><span> <%= item_tag.item.item_title %></span></strong>
+                <% end %>
+              </p>
+              <span><i class="fas fa-user"></i> By <% iuser = item_tag.item.user %><%= iuser.user_name %> ｜ </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <% @items.each do |item| %>
+      <div class="card w-50 mx-auto mt-4 shadow-lg">
+        <%= link_to item_path(item.id) do %>
+          <%= image_tag item.get_image(200, 200), class:"card-img-top"; %>
+        <% end %>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-10">
+              <p class="card-title">
+                <%= link_to(item_path(item.id), class:"text-dark") do %>
+                  <strong><i class="far fa-flag"></i><span> <%= item.item_title %></span></strong>
+                <% end %>
+              </p>
+              <span><i class="fas fa-user"></i> By <%= item.user.user_name %> ｜ </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>

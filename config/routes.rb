@@ -10,16 +10,21 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   namespace :admin do
     resources :users, only:[:index, :show, :edit, :update]
+    resources :item_comments, only:[:destroy]
+    resources :items, only:[:index, :show, :destroy]
     resources :lifehacks, only:[:index, :show, :destroy]
     resources :comments, only:[:destroy]
     resources :favorites, only:[:destroy]
-    resources :items, only:[:index, :show, :destroy]
-    resources :item_comments, only:[:destroy]
     resources :item_favorites, only:[:destroy]
   end
 
+  get "search" => "searches#search"
   get '/users/unsubscribe' => 'public/users#unsubscribe'
   patch '/users/withdraw' => 'public/users#withdraw'
 

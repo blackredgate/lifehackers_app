@@ -1,67 +1,56 @@
 <div class="container">
   <div class="row my-4">
-    <div class="col-md-3 text-nowrap">
-      <p class="bg-secondary">新規ユーザー登録</p>
-    </div>
-  </div>
-  
-  <div class="row my-4">
-    <div class="col-md-8">
+    <div class="col-3"></div>
+    <div class="col-7">
+      <div class="row my-4">
+        <h2>Welcome to New LifeHacker</h2>
+      </div>
+
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
-        
-        <div class="row">
-          <div class="field col-md-3">
-            <%= f.label :user_name, "ユーザーネーム" %>
-          </div>
-          <div class="col-md-9">
-            <%= f.text_field :user_name %>
-          </div>
-          <p>ユーザーネームは他ユーザーにも表示されます</p>
-        </div>
-        
-        <div class="row">
-          <div class="field col-md-3">
-            <%= f.label :email, "メールアドレス" %>
-          </div>
-          <div class="col-md-9">
-            <div class="field">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-            </div>
-          </div>
-        </div>
-        
-        <div classz="row">
-          <div class="field col-md-3 text-nowrap">
-            <%= f.label :password, "パスワード(6文字以上)" %>
-          </div>
-          <div class="col-md-9">
-            <div class="field">
-              <!--<% if @minimum_password_length %>-->
-                <!--<em>(<%= @minimum_password_length %> characters minimum)</em>-->
-              <!--<% end %>-->
+
+        <table class="table table-borderless">
+          <tr>
+            <th><%= f.label :user_name, "ユーザーネーム" %></th>
+            <td>
+              <%= f.text_field :user_name %>
+              <p>ユーザーネームは他ユーザーにも表示される名前です</p>
+            </td>
+          </tr>
+
+          <tr>
+            <th><%= f.label :email, "メールアドレス" %></th>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+          </tr>
+
+          <tr>
+            <th><%= f.label :password, "パスワード(6文字以上)" %></th>
+            <td>
               <%= f.password_field :password, autocomplete: "new-password" %>
-            </div>
-          </div>
-        </div>
-      
-        <div class="field">
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-        </div>
-      
-        <div class="actions">
-          <%= f.submit "新規登録" %>
-        </div>
+            </td>
+          </tr>
+
+          <tr>
+            <th><%= f.label :password_confirmation, "パスワード確認" %></th>
+            <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td><%= f.submit "Sign Up", class:'btn btn-primary' %></td>
+          </tr>
+
+          <tr align=center>
+            <td>既に登録済みの方は→</td>
+            <td><%= link_to "To Login", new_user_session_path, class: 'btn btn-outline-primary' %></td>
+          </tr>
+
+          <tr align=center>
+            <td>お試し⇒</td>
+            <td><%= link_to 'Guest Login', users_guest_sign_in_path, method: :post, class: 'btn btn-outline-primary' %></td>
+          </tr>
+        </table>
       <% end %>
     </div>
   </div>
-  
-  <div class="row-4">
-    <div class="col-md-3 text-nowrap">
-      <p class="bg-secondary">既に登録済みの方</p>
-       <%= render "public/shared/links" %>
-  </div>
-  
 </div>
-
