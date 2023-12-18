@@ -44,9 +44,8 @@
         <tbody>
           <tr>
             <% @lifehacks.each do |lifehack| %>
-              <td><%= link_to lifehack_path(lifehack.id) do %><%= lifehack.title %><% end %></td>
-              <td><%= link_to "Edit", edit_lifehack_path(lifehack.id), class: 'btn btn-success' %></td>
-              <td><%= link_to "Destroy", lifehack_path(lifehack.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
+              <td><%= link_to admin_lifehack_path(lifehack.id) do %><%= lifehack.title %><% end %></td>
+              <td><%= link_to "Destroy", admin_lifehack_path(lifehack.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
             <% end %>
           </tr>
         </tbody>
@@ -61,9 +60,8 @@
         <tbody>
           <tr>
             <% @items.each do |item| %>
-              <td><%= link_to item_path(item.id) do %><%= item.item_title %><% end %></td>
-              <td><%= link_to "Edit", edit_item_path(item.id), class: 'btn btn-success' %></td>
-              <td><%= link_to "Destroy", item_path(item.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
+              <td><%= link_to admin_item_path(item.id) do %><%= item.item_title %><% end %></td>
+              <td><%= link_to "Destroy", admin_item_path(item.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
             <% end %>
           </tr>
         </tbody>
@@ -81,7 +79,7 @@
           <tr>
             <% @comments.each do |comment| %>
               <td><%= comment.lifehack.title %></td>
-              <td><%= link_to lifehack_path(comment.lifehack.id) do %><%= comment.comment %><% end %></td>
+              <td><%= link_to admin_lifehack_path(comment.lifehack.id) do %><%= comment.comment %><% end %></td>
             <% end %>
           </tr>
         </tbody>
@@ -97,7 +95,7 @@
           <tr>
             <% @item_comments.each do |item_comment| %>
               <td><%= item_comment.item.item_title %></td>
-              <td><%= link_to item_path(item_comment.item.id) do %><%= item_comment.item_comment %><% end %></td>
+              <td><%= link_to admin_item_path(item_comment.item.id) do %><%= item_comment.item_comment %><% end %></td>
             <% end %>
           </tr>
         </tbody>
