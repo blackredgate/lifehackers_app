@@ -4,12 +4,12 @@
       <% email = current_user.email %>
       <% if email == "guest@example.com" %>
         <div class="center-block">
-        <div class="center-block">
-          <p class="text-center">
-            コメント投稿とお気に入り登録は<br>
-            本登録後に使用できます
-          </p>
-        </div>
+          <div class="center-block">
+            <p class="text-center">
+              コメント投稿とお気に入り登録は<br>
+              本登録後に使用できます
+            </p>
+          </div>
         <%= link_to "ユーザー登録", new_user_registration_path, class: 'btn btn-outline-info' %>
       </div>
       <% else %>
@@ -41,7 +41,7 @@
               <tr>
                 <td><%= item_comment.item_comment %></td>
                 <td>
-                  <% if item_comment.user.id == current_user.id %>
+                  <% if current_user && item_comment.user.id == current_user.id %>
                     <%= link_to "Destroy", item_item_comment_path(item_comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %>
                   <% else %>
                     <%= item_comment.user.user_name %>
