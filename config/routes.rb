@@ -25,11 +25,17 @@ Rails.application.routes.draw do
   end
 
   get "search" => "searches#search"
-  get '/users/unsubscribe' => 'public/users#unsubscribe'
-  patch '/users/withdraw' => 'public/users#withdraw'
+  
+  # get '/users/unsubscribe' => 'public/users#unsubscribe'
+  # patch '/users/withdraw' => 'public/users#withdraw'
 
    scope module: :public do
-    resources :users, only:[:show, :edit, :update]
+    resources :users, only:[:show, :edit, :update] do
+      collection do
+        get :unsubscribe
+        patch :withdraw
+      end
+    end
     resources :lifehacks do
       resource :favorites, only:[:create, :destroy]
       resources :comments, only:[:show, :new, :create, :edit, :update, :destroy]
