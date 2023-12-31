@@ -1,4 +1,6 @@
 class Admin::LifehacksController < ApplicationController
+  before_action :authenticate_admin!
+  
   def destroy
     lifehack = Lifehack.find(params[:id])
     lifehack.destroy

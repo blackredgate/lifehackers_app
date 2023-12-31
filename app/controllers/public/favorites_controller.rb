@@ -1,5 +1,6 @@
 class Public::FavoritesController < ApplicationController
-  before_action :guest_check, only: [:create, :destroy]
+  before_action :guest_check
+  before_action :is_matching_login_user
   
   def create
     lifehack = Lifehack.find(params[:lifehack_id])

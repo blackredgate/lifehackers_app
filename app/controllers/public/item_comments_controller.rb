@@ -1,5 +1,6 @@
 class Public::ItemCommentsController < ApplicationController
-  before_action :guest_check, only: [:new, :create, :edit, :update, :destroy]
+  before_action :guest_check, only: [:create, :edit, :update, :destroy]
+  before_action :is_matching_login_user, only: [:destroy]
 
   def create
     item = Item.find(params[:item_id])

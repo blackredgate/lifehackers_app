@@ -1,5 +1,6 @@
 class Public::ItemFavoritesController < ApplicationController
-  before_action :guest_check, only: [:create, :destroy]
+  before_action :guest_check
+  before_action :is_matching_login_user
   
   def create
     item = Item.find(params[:item_id])

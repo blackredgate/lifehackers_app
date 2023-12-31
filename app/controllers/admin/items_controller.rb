@@ -1,4 +1,6 @@
 class Admin::ItemsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def destroy
     item = Item.find(params[:id])
     item.destroy
