@@ -34,12 +34,12 @@ class Public::LifehacksController < ApplicationController
   end
 
   def index
-    @lifehacks = Lifehack.page(params[:page])
+    @lifehacks = Lifehack.order(created_at: :desc).page(params[:page])
   end
 
   def show
     @lifehack = Lifehack.find(params[:id])
-    @comments = @lifehack.comments
+    @comments = @lifehack.comments.all.order(created_at: :desc)
     @comment = Comment.new
   end
 

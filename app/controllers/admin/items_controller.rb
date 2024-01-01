@@ -8,11 +8,11 @@ class Admin::ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.page(params[:page])
+    @items = Item.order(created_at: :desc).page(params[:page])
   end
 
   def show
     @item = Item.find(params[:id])
-    @item_comments = @item.item_comments
+    @item_comments = @item.item_comments.all.order(created_at: :desc)
   end
 end
