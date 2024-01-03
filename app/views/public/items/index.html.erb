@@ -39,6 +39,7 @@
               <% item.item_tags.each do |item_tag| %>
                 <%= item_tag.itag_name %>
               <% end %>
+              <%= l item.created_at, format: :short %>
             </span>
           </div>
         </div>

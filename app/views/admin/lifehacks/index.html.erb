@@ -28,6 +28,7 @@
                   <%= lifehack_tag.ltag_name %>
                 <% end %>
               </td>
+              <td><%= l lifehack.created_at, format: :short %></td>
               <td><%= link_to "削除", admin_lifehack_path(lifehack.id), method: :delete, class: 'btn btn-danger' %></td>
             </tr>
           <% end %>
