@@ -6,8 +6,11 @@ class Public::ItemCommentsController < ApplicationController
     item = Item.find(params[:item_id])
     item_comment = current_user.item_comments.new(item_comment_params)
     item_comment.item_id = item.id
-    item_comment.save
-    redirect_to item_path(item)
+    if item_comment.save
+      redirect_to item_path(item)
+    else
+      render template: "homes/top"
+    end
   end
 
   def destroy

@@ -6,8 +6,11 @@ class Public::CommentsController < ApplicationController
     lifehack = Lifehack.find(params[:lifehack_id])
     comment = current_user.comments.new(comment_params)
     comment.lifehack_id = lifehack.id
-    comment.save
-    redirect_to lifehack_path(lifehack)
+    if comment.save
+      redirect_to lifehack_path(lifehack)
+    else
+      render template: "homes/top"
+    end
   end
 
   def destroy
