@@ -30,8 +30,13 @@
 
     <div class="col-4">
       <div  class="center-block">
-        <h4><%= @item.item_title %></h4>
-         <% @item.item_tags.each do |item_tag| %>
+        <h6><%= l @item.created_at, format: :short %></h6>
+        <h5 class="text-center">
+          <%= link_to admin_user_path(@item.user.id) do %>
+            <%= @item.user.user_name %>
+          <% end %>
+        </h5>
+        <% @item.item_tags.each  do |item_tag| %>
           <%= item_tag.itag_name %>
         <% end %>
       </div>

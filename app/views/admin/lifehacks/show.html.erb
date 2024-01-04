@@ -30,7 +30,12 @@
 
     <div class="col-4">
       <div  class="center-block">
-        <h4><%= @lifehack.title %></h4>
+        <h6><%= l @lifehack.created_at, format: :short %></h6>
+        <h5 class="text-center">
+          <%= link_to admin_user_path(@lifehack.user.id) do %>
+            <%= @lifehack.user.user_name %>
+          <% end %>
+        </h5>
         <% @lifehack.lifehack_tags.each do |lifehack_tag| %>
           <%= lifehack_tag.ltag_name %>
         <% end %>
