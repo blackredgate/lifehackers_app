@@ -22,7 +22,7 @@
   <% @lifehacks.each do |lifehack| %>
     <div class="card w-50 mx-auto mt-4 shadow-lg">
       <%= link_to lifehack_path(lifehack.id) do %>
-        <%= image_tag lifehack.get_image(200, 200), class:"card-img-top"; %>
+        <%= image_tag lifehack.get_image(300, 250), class:"card-img-top"; %>
       <% end %>
 
       <div class="card-body">

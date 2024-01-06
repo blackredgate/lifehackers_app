@@ -22,9 +22,9 @@
   <% @items.each do |item| %>
     <div class="card w-50 mx-auto mt-4 shadow-lg">
       <%= link_to item_path(item.id) do %>
-        <%= image_tag item.get_image(200, 200), class:"card-img-top"; %>
+        <%= image_tag item.get_image(300, 250), class:"card-img-top"; %>
       <% end %>
-  
+
       <div class="card-body">
         <div class="row">
           <div class="col-10">
