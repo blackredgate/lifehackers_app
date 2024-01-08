@@ -47,6 +47,7 @@
                     <%= comment.user.user_name %>
                   <% end %>
                 </td>
+                <td><%= l comment.created_at, format: :short %></td>
               </tr>
             <% end %>
           </tbody>
