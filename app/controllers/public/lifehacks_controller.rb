@@ -11,6 +11,7 @@ class Public::LifehacksController < ApplicationController
     @lifehack = Lifehack.new(lifehack_params)
     @lifehack.user_id = current_user.id
     if @lifehack.save
+      flash[:notice] = "投稿に成功しました"
       redirect_to lifehack_path(@lifehack.id)
     else
       render :new

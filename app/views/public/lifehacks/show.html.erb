@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row my-3">
+    <div><%= flash[:notice] %></div>
     <% if user_signed_in? %>
       <% email = current_user.email %>
       <% if email == "guest@example.com" %>

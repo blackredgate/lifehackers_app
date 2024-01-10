@@ -11,6 +11,7 @@ class Public::ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.user_id = current_user.id
     if @item.save
+      flash[:notice] = "投稿に成功しました"
       redirect_to item_path(@item.id)
     else
       render :new
