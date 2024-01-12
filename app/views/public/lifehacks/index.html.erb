@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-2">
-        <% if user_signed_in? %>
+        <% if user_signed_in? %><!--本登録ユーザーのみ新規投稿ボタン表示-->
           <% email = current_user.email %>
           <% if email == "guest@example.com" %>
             <h4>投稿機能の利用は本登録が必要です</h4>
