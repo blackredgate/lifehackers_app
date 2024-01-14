@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row my-3">
     <div><%= flash[:notice] %></div>
-    <% if user_signed_in? %>
+    <% if user_signed_in? %><!--コメントフォームとブックマーク登録ボタン表示-->
       <% email = current_user.email %>
       <% if email == "guest@example.com" %>
         <div class="center-block">
@@ -28,7 +28,7 @@
       </div>
     <% end %>
 
-    <div class="col-5">
+    <div class="col-5"><!--投稿画像-->
       <div class="row my-3">
         <h4 class="text-center"><%= @lifehack.title %></h4>
         <div class="mx-auto">
@@ -38,7 +38,7 @@
       <div class="row my-3">
         <table class="table">
           <tbody>
-            <% @comments.each do |comment| %>
+            <% @comments.each do |comment| %><!--コメント一覧表示-->
               <tr>
                 <td><%= comment.comment %></td>
                 <td>
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-4"><!--投稿記事本文-->
       <div  class="center-block">
         <h6><%= l @lifehack.created_at, format: :short %></h6>
         <h5 class="text-center">
