@@ -7,14 +7,14 @@
       <% if @user == current_user %>
         <h2>マイページ</h2>
       <% else %>
-        <h2><%= @user.user_name %>さんのページ</h2>
+        <h2><%= @user.user_name %>さんのページ</h2><!--ユーザー名表示-->
       <% end %>
     </div>
   </div>
 
   <div class="row my-2">
     <div class="col-md-8">
-      <table class="table table-bordered">
+      <table class="table table-bordered"><!--登録情報表示、本人のみ編集ボタン表示-->
         <thead>
           <tr>
             <th>登録情報</th>
@@ -48,7 +48,7 @@
     <div class="col-md-6">
       <table class="table table-bordered">
         <thead>
-          <tr><th>Favorite_LifeHack</th></th></tr>
+          <tr><th>Favorite_LifeHack</th></th></tr><!--ブックマークしたライフハック一覧-->
         </thead>
         <tbody>
           <tr>
@@ -69,7 +69,7 @@
     <div class="col-md-6">
       <table class="table table-bordered">
         <thead>
-          <tr><th>Favorite_UsefulItem</th></tr>
+          <tr><th>Favorite_UsefulItem</th></tr><!--ブックマークした便利アイテム一覧-->
         </thead>
         <tbody>
           <tr>
@@ -92,7 +92,7 @@
     <div class="col-md-6">
       <table class="table table-bordered">
         <thead>
-          <tr><th>LifeHack</th></tr>
+          <tr><th>LifeHack</th></tr><!--投稿したライフハック一覧-->
         </thead>
         <tbody>
           <tr>
@@ -115,7 +115,7 @@
     <div class="col-md-6">
       <table class="table table-bordered">
         <thead>
-          <tr><th>UsefulItem</th></tr>
+          <tr><th>UsefulItem</th></tr><!--投稿した便利アイテム一覧-->
         </thead>
         <tbody>
           <tr>
@@ -140,7 +140,7 @@
     <div class="col-md-6">
       <table class="table table-bordered">
         <thead>
-          <tr><th>comment_LifeHack</th></tr>
+          <tr><th>comment_LifeHack</th></tr><!--コメントしたライフハック一覧-->
         </thead>
         <tbody>
           <tr>
@@ -155,7 +155,7 @@
     <div class="col-md-6">
       <table class="table table-bordered">
         <thead>
-          <tr><th>comment_UsefulItem</th></tr>
+          <tr><th>comment_UsefulItem</th></tr><!--コメントした便利アイテム一覧-->
         </thead>
         <tbody>
           <tr>
