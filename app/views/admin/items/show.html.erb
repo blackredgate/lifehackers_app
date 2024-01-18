@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row my-3">
-    <div class="col-3">
+    <div class="col-3"><!--削除ボタン表示-->
       <% if admin_signed_in? %>
         <div class="center-block">
           <%= link_to "削除", admin_item_path(@item.id), method: :delete, class: 'btn btn-danger' %>
@@ -8,8 +8,9 @@
       <% end %>
     </div>
 
-    <div class="col-5">
+    <div class="col-5"><!--投稿画像-->
       <div class="row my-3">
+        <h4 class="mx-auto"><%= @item.item_title %></h4>
         <div  class="mx-auto">
           <%= image_tag @item.get_image(400, 400) %>
         </div>
@@ -17,7 +18,7 @@
       <div class="row my-3">
         <table class="table">
           <tbody>
-            <% @item_comments.each do |item_comment| %>
+            <% @item_comments.each do |item_comment| %><!--コメント一覧表示-->
               <tr>
                 <td><%= item_comment.item_comment %></td>
                 <td><%= link_to "Destroy", admin_item_comment_path(item_comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
@@ -29,7 +30,7 @@
       </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-4"><!--投稿記事-->
       <div  class="center-block">
         <h6><%= l @item.created_at, format: :short %></h6>
         <h5 class="text-center">

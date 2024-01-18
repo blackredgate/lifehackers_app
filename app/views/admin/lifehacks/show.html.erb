@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row my-3">
-    <div class="col-3">
+    <div class="col-3"><!--削除ボタン表示-->
       <% if admin_signed_in? %>
         <div class="center-block">
           <%= link_to "削除", admin_lifehack_path(@lifehack.id), method: :delete, class: 'btn btn-danger' %>
@@ -8,8 +8,9 @@
       <% end %>
     </div>
 
-    <div class="col-5">
+    <div class="col-5"><!--投稿画像-->
       <div class="row my-3">
+        <h4 class="mx-auto"><%= @lifehack.title %></h4>
         <div class="mx-auto">
           <%= image_tag @lifehack.get_image(400, 400) %>
         </div>
@@ -17,7 +18,7 @@
       <div class="row my-3">
         <table class="table">
           <tbody>
-            <% @comments.each do |comment| %>
+            <% @comments.each do |comment| %><!--コメント一覧表示-->
               <tr>
                 <td><%= comment.comment %></td>
                 <td><%= link_to "Destroy", admin_comment_path(comment.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %></td>
@@ -29,7 +30,7 @@
       </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-4"><!--投稿記事本文-->
       <div  class="center-block">
         <h6><%= l @lifehack.created_at, format: :short %></h6>
         <h5 class="text-center">

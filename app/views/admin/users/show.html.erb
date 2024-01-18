@@ -4,13 +4,13 @@
       <div>
         <%= flash[:notice] %>
       </div>
-      <h2><%= @user.user_name %>さんの会員詳細</h2>
+      <h2><%= @user.user_name %>さんの会員詳細</h2><!--ユーザー名表示-->
     </div>
   </div>
 
   <div class="row my-4">
     <div class="col-md-8">
-      <table class="table table-borderless">
+      <table class="table table-borderless"><!--登録情報表示、編集ボタン表示-->
         <tr>
           <td></td>
           <td>
@@ -39,7 +39,7 @@
     <div class="col-md-6">
       <table class="table table-bordered">
         <thead>
-          <tr><th>LifeHack</th></tr>
+          <tr><th>LifeHack</th></tr><!--投稿したライフハック一覧-->
         </thead>
         <tbody>
           <tr>
@@ -55,7 +55,7 @@
     <div class="col-md-6">
       <table class="table table-bordered">
         <thead>
-          <tr><th>UsefulItem</th></tr>
+          <tr><th>UsefulItem</th></tr><!--投稿した便利アイテム一覧-->
         </thead>
         <tbody>
           <tr>
@@ -73,7 +73,7 @@
     <div class="col-md-6">
       <table class="table table-bordered">
         <thead>
-          <tr><th>comment_LifeHack</th></tr>
+          <tr><th>comment_LifeHack</th></tr><!--コメントしたライフハック一覧-->
         </thead>
         <tbody>
           <tr>
@@ -89,7 +89,7 @@
     <div class="col-md-6">
       <table class="table table-bordered">
         <thead>
-          <tr><th>comment_UsefulItem</th></tr>
+          <tr><th>comment_UsefulItem</th></tr><!--コメントした便利アイテム一覧-->
         </thead>
         <tbody>
           <tr>
