@@ -22,7 +22,8 @@ james = User.find_or_create_by!(email: "james@example.com") do |user|
   user.password = "password"
 end
 
-# 投稿記事のシードデータ
+
+# ライフハック投稿記事のシードデータ
 Lifehack.find_or_create_by!(title: "捨てる前にタオルを活用") do |lifehack|
   lifehack.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-lifehack1.jpg"), filename:"sample-lifehack1.jpg")
   lifehack.body = "古くなってしまったタオルは小さく切って、油汚れ拭きようにストックしておくと便利！"
@@ -32,6 +33,7 @@ Lifehack.find_or_create_by!(title: "捨てる前にタオルを活用") do |life
   end
 end
 
+# アイテム投稿記事のシードデータ
 Item.find_or_create_by!(item_title: "ケーブル収納") do |item|
   item.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-item1.jpg"), filename:"sample-item1.jpg")
   item.item_body = "収納しにくい充電ケーブルなどをスッキリ収納できます。百円均一ショップなどで購入できます"
