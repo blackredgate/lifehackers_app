@@ -1,7 +1,8 @@
 <div class="card-list-container py-5">
   <div class="col-md-6"></div>
 
-  <% if @range == "LifeHackタグ" %>
+  <!--検索バーでの検索結果表示-->
+  <% if @range == "LifeHackタグ" %><!--ライフハックタグでの検索結果表示-->
     <% @lifehack_tags.each do |lifehack_tag| %>
       <div class="card w-50 mx-auto mt-4 shadow-lg">
         <%= link_to lifehack_path(lifehack_tag.lifehack.id) do %>
@@ -21,7 +22,7 @@
         </div>
       </div>
     <% end %>
-  <% elsif @range == "LifeHack" %>
+  <% elsif @range == "LifeHack" %><!--ライフハックの検索結果表示-->
     <% @lifehacks.each do |lifehack| %>
       <div class="card w-50 mx-auto mt-4 shadow-lg">
         <%= link_to lifehack_path(lifehack.id) do %>
@@ -41,7 +42,7 @@
         </div>
       </div>
     <% end %>
-  <% elsif @range == "Itemタグ" %>
+  <% elsif @range == "Itemタグ" %><!--便利アイテムタグの検索結果表示-->
     <% @item_tags.each do |item_tag| %>
       <div class="card w-50 mx-auto mt-4 shadow-lg">
         <%= link_to item_path(item_tag.item.id) do %>
@@ -61,7 +62,7 @@
         </div>
       </div>
     <% end %>
-  <% else %>
+  <% else %><!--便利アイテムの検索結果表示-->
     <% @items.each do |item| %>
       <div class="card w-50 mx-auto mt-4 shadow-lg">
         <%= link_to item_path(item.id) do %>
