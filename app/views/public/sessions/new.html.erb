@@ -7,27 +7,25 @@
       </div>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="row">
+        <div class="row my-3">
           <div class="field col-md-4">
             <%= f.label :email, "メールアドレス" %>
           </div>
           <div class="field col-md-8">
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-            <p></p>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row my-3">
           <div class="field col-md-4 text-nowrap">
             <%= f.label :password, "パスワード(6文字以上)" %>
           </div>
           <div class="field col-md-8">
             <%= f.password_field :password, autocomplete: "current-password" %>
-            <p></p>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row my-3">
           <div class="col-md-4"></div>
           <div class="col-md-8">
             <% if devise_mapping.rememberable? %>
@@ -39,7 +37,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row my-3">
           <div class="col-md-4"></div>
           <div class="col-md-4">
             <div class="actions">
@@ -48,7 +46,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row my-5">
           <div class="col-md-6">
             <p class=" text-nowrap">これからユーザー登録をする方は⇒</p>
           </div>
