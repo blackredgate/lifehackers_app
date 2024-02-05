@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row my-4">
     <div class="col-md-1"></div>
-    <div class="col-md-2">
+    <div class="col-md-8">
       <h2>ユーザー情報編集</h2>
     </div>
   </div>
@@ -10,28 +10,42 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
-        <table class="table table-borderless">
-          <tr>
-            <th>ユーザーネーム</th>
-            <td><%= f.text_field :user_name %></td>
-          </tr>
-          <tr>
-            <th>メールアドレス</th>
-            <td><%= f.text_field :email %></td>
-          </tr>
-          <tr>
-            <th>ステータス</th>
-            <td>
-              <%= f.radio_button :is_deleted, "false" %>
-              <%= f.label :is_deleted_false, "有効" %>
-              <%= f.radio_button :is_deleted, "true" %>
-              <%= f.label :is_deleted_true, "退会" %>
-            </td>
-          </tr>
-          <tr>
-            <td><%= f.submit '変更を保存', class:'btn btn-sm btn-success' %></td>
-          </tr>
-        </table>
+        <div class="row my-4">
+          <div class="col-md-4">
+            <p>ユーザーネーム</p>
+          </div>
+          <div class="field col-md-8">
+            <%= f.text_field :user_name %>
+          </div>
+        </div>
+        
+        <div class="row my-4">
+          <div class="col-md-4">
+            <p>メールアドレス</p>
+          </div>
+          <div class="field col-md-8">
+            <%= f.text_field :email %>
+          </div>
+        </div>
+        
+        <div class="row my-4">
+          <div class="col-md-4">
+            <p>ステータス</p>
+          </div>
+          <div class="field col-md-8">
+            <%= f.radio_button :is_deleted, "false" %>
+            <%= f.label :is_deleted_false, "有効" %>
+            <%= f.radio_button :is_deleted, "true" %>
+            <%= f.label :is_deleted_true, "退会" %>
+          </div>
+        </div>
+        
+        <div class="row my-4">
+          <div class="col-md-4"></div>
+          <div class="field col-md-6">
+            <%= f.submit '変更を保存', class:'btn btn-sm btn-success' %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
