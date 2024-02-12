@@ -1,6 +1,6 @@
 class Public::LifehacksController < ApplicationController
   before_action :guest_check, only: [:new, :create, :edit, :update, :destroy]
-  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+  before_action :is_matching_login_lifehack_user, only: [:edit, :update, :destroy]
 
   def new
     @lifehack = Lifehack.new

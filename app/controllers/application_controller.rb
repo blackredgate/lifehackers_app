@@ -11,6 +11,24 @@ class ApplicationController < ActionController::Base
   def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
+      flash[:notice] = "アカウント作成者以外は編集できません。"
+      redirect_to root_path
+    end
+  end
+
+  def is_matching_login_lifehack_user
+    lifehack = Lifehack.find(params[:id])
+    user = lifehack.user
+    unless user.id == current_user.id
+      flash[:notice] = "作成者以外は編集できません。"
+      redirect_to root_path
+    end
+  end
+
+  def is_matching_login_item_user
+    item = Item.find(params[:id])
+    user = item.user
+    unless user.id == current_user.id
       flash[:notice] = "作成者以外は編集できません。"
       redirect_to root_path
     end
