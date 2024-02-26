@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row my-4">
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <p></p>
@@ -9,27 +9,30 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row my-4">
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <p class="text-center">
         投稿やブックマークの登録は登録済みユーザー限定の機能です。<br>
         退会すると、これらの機能が利用できません。<br>
-        また、会員登録情報が閲覧できなくなります。<br>
+        また、登録した会員情報が閲覧できなくなります。<br>
         退会する場合は、「退会する」をクリックしてください。
       </p>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row my-4">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-      <table class="table table-borderless">
-        <tr align=center>
-          <td><%= link_to "退会しない", user_path(current_user.id), class:'btn btn-sm btn-primary' %></td>
-          <td><%= link_to "退会する", withdraw_users_path, method: :patch, class:'btn btn-sm btn-danger' %></td>
-        </tr>
-      </table>
+      <div class="row my-4">
+        <div class="col-md-3"></div>
+        <div class="col-md-4">
+          <%= link_to "退会しない", user_path(current_user.id), class:'btn btn-sm btn-primary' %>
+        </div>
+        <div class="col-md-3">
+          <%= link_to "退会する", withdraw_users_path, method: :patch, class:'btn btn-sm btn-danger' %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
