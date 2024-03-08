@@ -19,7 +19,13 @@
 - 便利グッズを探すとき
 ​
 ## 設計書
-後ほど作成予定
+-  UI Flows
+  - https://docs.google.com/spreadsheets/d/13wr7Rid-De80c1j2k4NpDh035cRVfDNV/edit?usp=sharing&ouid=117143413995298934387&rtpof=true&sd=true
+- ワイヤーフレーム
+  - https://docs.google.com/spreadsheets/d/1u3nYEtdt71rwpbbvIi-101GeiskNMkfO/edit?usp=sharing&ouid=117143413995298934387&rtpof=true&sd=true
+- AWS構成図
+  - https://drive.google.com/file/d/1NuqgZhBVe9kRZg-XnowWbqlovRxeiZc_/view?usp=sharing
+
 ​
 ## 開発環境
 - OS：Linux(CentOS)
